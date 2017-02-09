@@ -26,6 +26,7 @@ public class Persona
         alturaPersona = altura;
         edadPersona = edad;
         caloriasPersona = 0;
+
         if (hombre == false) 
         {
             metabolismoBasal = 10 * pesoPersona + 6 * alturaPersona + 5 * edadPersona + -161;
@@ -52,8 +53,8 @@ public class Persona
         else {
             System.out.println("Se ha superado tu metabolismo basal");
             caloriasADevolver = -1;
-        }
 
+        }
         return caloriasADevolver;  
     }
 
@@ -65,4 +66,31 @@ public class Persona
         return caloriasPersona;
 
     }
+
+    /**
+     * Metodo que permite peguntar a una persona y que devuelve la respuesta
+     */
+    public String contestar(String pregunta)
+    {
+       
+        String respuesta = "";
+
+        if (caloriasPersona <= metabolismoBasal )
+        {  
+            if (pregunta.length()%3 == 0)
+            {
+                respuesta = "SI";           
+            }
+            else{
+
+                respuesta = "NO";           
+            }
+        }
+        if(metabolismoBasal < caloriasPersona || pregunta.contains(nombrePersona)){
+            respuesta = pregunta.toUpperCase();     
+        }
+        System.out.println(respuesta);
+        return respuesta;
+    }
+
 }
