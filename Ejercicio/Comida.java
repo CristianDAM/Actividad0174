@@ -31,6 +31,21 @@ public class Comida
         return caloriasDeComida;
     
     }
+    
+    public String toString()
+    {
+        String comida = nombreDeComida;
+        return comida;
+
+    }
+        
+    public String getNombre()
+    { 
+        
+        return nombreDeComida;
+
+    }
+   
 
   
 }

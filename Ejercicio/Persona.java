@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Persona here.
  * 
@@ -14,6 +14,9 @@ public class Persona
     private int edadPersona;
     private int caloriasPersona;
     private int metabolismoBasal;
+    private ArrayList<Comida> listaComidas; 
+    private Comida comidaMasCaloricaTomada;		
+
 
     /**
      * Constructor for objects of class Persona
@@ -26,6 +29,8 @@ public class Persona
         alturaPersona = altura;
         edadPersona = edad;
         caloriasPersona = 0;
+        listaComidas = new ArrayList<Comida>();
+        comidaMasCaloricaTomada = null;
 
         if (hombre == false) 
         {
@@ -45,10 +50,16 @@ public class Persona
     {
         int caloriasADevolver = -1;
         caloriasADevolver = comidaADar.getCaloriasDeLaComida();
+
         if (metabolismoBasal >= caloriasPersona)
         {
-
             caloriasPersona = caloriasPersona + comidaADar.getCaloriasDeLaComida();
+            listaComidas.add(comidaADar);
+            if (comidaMasCaloricaTomada.getCaloriasDeLaComida() <= comidaADar.getCaloriasDeLaComida())
+            {
+                comidaMasCaloricaTomada = comidaADar;  
+            }   
+
         }
         else {
             System.out.println("Se ha superado tu metabolismo basal");
@@ -63,6 +74,7 @@ public class Persona
      */
     public int getCaloriasIngeridas()
     {
+
         return caloriasPersona;
 
     }
@@ -72,7 +84,7 @@ public class Persona
      */
     public String contestar(String pregunta)
     {
-       
+
         String respuesta = "";
 
         if (caloriasPersona <= metabolismoBasal )
@@ -93,4 +105,24 @@ public class Persona
         return respuesta;
     }
 
+    public String getAlimentoMasCaloricoConsumido()
+    {
+        String nombreComidaADevolver = null;
+
+        if (comidaMasCaloricaTomada != null) {
+            nombreComidaADevolver = comidaMasCaloricaTomada.getNombre();
+            System.out.println(nombreComidaADevolver);
+        }
+        else {
+            System.out.println("Aun no he comido nada");
+        }
+
+        return nombreComidaADevolver;
+    }
+
+
+    public void verListadoComidasIngeridas()
+    {
+
+    }
 }
